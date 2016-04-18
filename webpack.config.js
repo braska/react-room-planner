@@ -50,7 +50,10 @@ module.exports = {
         new webpack.ProvidePlugin({
             'Immutable': 'Immutable'
         }),
-        new ExtractTextPlugin("styles/[name].css")
+        new ExtractTextPlugin("styles/[name].css"),
+        new webpack.DefinePlugin({
+            __DEV__: JSON.stringify(NODE_ENV != "production")
+        })
     ],
 
     devServer: {
