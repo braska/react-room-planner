@@ -4,26 +4,41 @@ const NODE_ENV = process.env.NODE_ENV || "development";
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const rimraf = require('rimraf');
+const path = require('path');
 
 module.exports = {
     context: __dirname + '/src',
-    entry: {
-        app: "./js/app"
-    },
+    entry: [
+        "./js/app",
+        'babel-polyfill'
+    ],
     output: {
         path: __dirname + "/public/assets",
         publicPath: '/assets/',
-        filename: "js/[name].js"
+        filename: "js/bundle.js"
     },
 
     devtool: NODE_ENV == "development" ? "cheap-inline-module-source-map" : null,
 
     module: {
+        /*preLoaders: [
+            {
+                test: /\.jsx?$/,
+                loaders: ['eslint'],
+                include: [
+                    path.resolve(__dirname, "src")
+                ]
+            }
+        ],*/
         loaders: [
             {
                 test: /\.jsx?$/,
                 exclude: /\/node_modules\//,
-                loaders: ['react-hot', 'babel-loader']
+                include: [
+                    path.resolve(__dirname, "src")
+                ],
+                loaders: ['react-hot', 'babel-loader'],
+                plugins: ['transform-runtime']
             },
             {
                 test: /\.css$/,
@@ -46,6 +61,7 @@ module.exports = {
                 rimraf.sync(compiler.options.output.path);
             }
         },
+        new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.NoErrorsPlugin(),
         new webpack.ProvidePlugin({
             'Immutable': 'Immutable'

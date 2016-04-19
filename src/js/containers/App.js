@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {combineReducers, createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 
@@ -12,21 +12,22 @@ const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
 
 export default class App extends Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+    this.store = this.props.store;
+  }
 
-    render() {
-        const store = this.props.store;
-        const devTools = __DEV__ ? (<DevTools />) : '';
+  render() {
+    const store = this.store;
+    const devTools = __DEV__ ? (<DevTools />) : '';
 
-        return (
-            <Provider store={store}>
-                <div>
-                    <PlannerApp store={store}/>
-                    {devTools}
-                </div>
-            </Provider>
-        );
-    }
+    return (
+      <Provider store={store}>
+        <div>
+          <PlannerApp store={store}/>
+          {devTools}
+        </div>
+      </Provider>
+    );
+  }
 }
