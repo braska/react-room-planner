@@ -6,3 +6,30 @@ export function addEntity(entity) {
     payload: entity
   };
 }
+
+export function setEntityWidth(entity, width) {
+  return {
+    type: types.SET_ENTITY_WIDTH,
+    payload: {
+      entity: entity,
+      width: width
+    }
+  }
+}
+
+export function setEntityHeight(entity, height) {
+  return {
+    type: types.SET_ENTITY_HEIGHT,
+    payload: {
+      entity: entity,
+      height: height
+    }
+  }
+}
+
+export function deleteEntity(entity) {
+  return {
+    type: types.DELETE_ENTITY,
+    payload: entity
+  }
+}

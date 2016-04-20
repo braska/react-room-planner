@@ -24,7 +24,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <div>
-          <PlannerApp store={store}/>
+          <PlannerApp />
           {devTools}
         </div>
       </Provider>

@@ -2,29 +2,40 @@ import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as actions from '../actions';
-import Info from '../components/Info';
+import Header from '../components/Header';
+import AddEntityForm from '../components/AddEntityForm';
+import List from '../components/List';
+import {Grid, Row, Col} from 'react-bootstrap';
 
 class PlannerApp extends Component {
-  constructor(props) {
-    super(props);
-    this.store = this.props.store;
-  }
-
   render() {
-    const state = this.store.getState();
+    const room = {
+      width: this.props.width,
+      height: this.props.height,
+      entities: this.props.entities
+    };
+    
+    const {addEntity, setEntityWidth, setEntityHeight, deleteEntity} = this.props.actions;
 
-    return <div className="container-fluid intro">
-      <div className="container">
-        <h1 className="intro-title">Room Planner</h1>
-        <p className="intro-description">Easy to plan</p>
-      </div>
-      <Info width={state.roomWidth} height={state.roomHeight} count={state.entities.length} />
+    return <div>
+      <Header room={room}/>
+      <Grid fluid>
+        <AddEntityForm addEntity={addEntity}/>
+        <Row>
+          <Col lg={6}>
+            <List entities={room.entities} setEntityWidth={setEntityWidth} setEntityHeight={setEntityHeight} deleteEntity={deleteEntity} />
+          </Col>
+          <Col lg={6}>
+    
+          </Col>
+        </Row>
+      </Grid>
     </div>;
   }
 }
 
 function mapState(state) {
-  return state;
+  return state.toJS();
 }
 
 function mapDispatch(dispatch) {
