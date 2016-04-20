@@ -5,6 +5,7 @@ import * as actions from '../actions';
 import Header from '../components/Header';
 import AddEntityForm from '../components/AddEntityForm';
 import List from '../components/List';
+import PlannerCanvas from '../components/PlannerCanvas';
 import {Grid, Row, Col} from 'react-bootstrap';
 
 class PlannerApp extends Component {
@@ -14,8 +15,8 @@ class PlannerApp extends Component {
       height: this.props.height,
       entities: this.props.entities
     };
-    
-    const {addEntity, setEntityWidth, setEntityHeight, deleteEntity} = this.props.actions;
+
+    const {addEntity, setEntityWidth, setEntityHeight, deleteEntity, moveEntity} = this.props.actions;
 
     return <div>
       <Header room={room}/>
@@ -26,7 +27,7 @@ class PlannerApp extends Component {
             <List entities={room.entities} setEntityWidth={setEntityWidth} setEntityHeight={setEntityHeight} deleteEntity={deleteEntity} />
           </Col>
           <Col lg={6}>
-    
+            <PlannerCanvas entities={room.entities} width={room.width} height={room.height} moveEntity={moveEntity} />
           </Col>
         </Row>
       </Grid>

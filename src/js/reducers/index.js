@@ -11,6 +11,8 @@ export default function planner(state = INITIAL_STATE, action) {
       return state.updateIn(['entities', state.get('entities').indexOf(action.payload.entity)], entity => Object.assign({}, entity, {height: action.payload.height}));
     case types.DELETE_ENTITY:
       return state.updateIn(['entities'], list => list.delete(list.indexOf(action.payload)));
+    case types.MOVE_ENTITY:
+      return state.updateIn(['entities', state.get('entities').indexOf(action.payload.entity)], entity => Object.assign({}, entity, {x: action.payload.x, y: action.payload.y}));
     default:
       return state;
   }

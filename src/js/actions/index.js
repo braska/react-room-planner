@@ -33,3 +33,14 @@ export function deleteEntity(entity) {
     payload: entity
   }
 }
+
+export function moveEntity(entity, x, y) {
+  return {
+    type: types.MOVE_ENTITY,
+    payload: {
+      entity: entity,
+      x: x,
+      y: y
+    }
+  };
+}
