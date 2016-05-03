@@ -1,5 +1,7 @@
 # Room planner
 
+![preview](preview.jpg)
+
 ## Requirements
 
 * NodeJS >= 5.4.1
