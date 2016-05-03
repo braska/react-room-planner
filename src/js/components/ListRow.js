@@ -44,6 +44,7 @@ export default class ListRow extends Component {
       </td>
       <td>
         <Button bsSize="xsmall" bsStyle="danger" onClick={event => this.props.deleteEntity(this.props.entity)}>Remove</Button>
+        {' '}
         <Button bsSize="xsmall">Rotate</Button>
       </td>
     </tr>;

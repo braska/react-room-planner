@@ -21,7 +21,7 @@ export default class List extends Component {
             <td>Name</td>
             <td>Coordinates</td>
             <td>Width * Height</td>
-            <td>Actions</td>
+            <td style={{'width': '130px'}}>Actions</td>
           </tr>
         </thead>
         <tbody>
