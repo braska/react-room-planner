@@ -14,7 +14,7 @@ module.exports = {
     ],
     output: {
         path: __dirname + "/public/assets",
-        publicPath: '/react-room-planner/assets/',
+        publicPath: '/assets/',
         filename: "js/bundle.js"
     },
 
